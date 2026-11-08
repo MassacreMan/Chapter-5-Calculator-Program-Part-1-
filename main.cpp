@@ -1,55 +1,31 @@
-//  This is a menu-based program that allows the user to repeatedly use an arthimetic function.
+// This program is a random numbr guessing game. The user has to guess a number between 1 and 100, and the program will give hints if the guess is too high or too low.
 #include <iostream>
-#include <iomanip>
-#include <cmath>
+#include <random>
 using namespace std;
 
-int main()
-
-{
-
-	int choice;
-	
-	// Menu Constants
-	
-	const int ADD = 1;
-	const int SUBTRACT = 2;
-	const int MULTIPLY = 3;
-	const int DIVIDE = 4;
-
-// Menu Display
-	cout << "Please select an operation from the menu below: " << endl
-		 << "1. Add" << endl
-		 << "2. Subtract" << endl
-		 << "3. Multiply" << endl
-		 << "4. Divide" << endl
-		 << "Enter your choice: ";
-	cin >> choice;
-
-	cout << fixed << setprecision(9);
-
-// Response to Menu Selection
-	if (choice == ADD)
-	{
-		cout << "You selected Addittion. " << endl;
-	}
-	else if (choice == SUBTRACT)
-	{
-		cout << "You selected Subtraction. " << endl;
-	}
-	else if (choice == MULTIPLY)
-	{
-		cout << "You selected Multiplication. " << endl;
-	}
-	else if (choice == DIVIDE)
-	{
-		cout << "You selected Division. " << endl;
-	}
-	else
-	{
-		cout << "Invalid selection. Please try again." << endl;
-	
+int main() {
+	// Generate a random number between 1 and 100
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dis(1, 100);
+	int randomNumber = dis(gen);
+	int userGuess = 0;
+	cout << "Welcome to the Number Guessing Game! My name is Joshua." << endl;
+	cout << "I have selected a number between 1 and 100. Try to guess it!" << endl;
+	// Loop until the user guesses the correct number
+	while (userGuess != randomNumber) {
+		cout << "Enter your guess: ";
+		cin >> userGuess;
+		if (userGuess < randomNumber) {
+			cout << "Too low! Try again." << endl;
+		}
+		else if (userGuess > randomNumber) {
+			cout << "Too high! Try again." << endl;
+		}
+		else {
+			cout << "Congratulations! You've guessed the correct number: " << randomNumber << endl;
+			cout << "That was an interesting game. How about a nice game of chess? " << endl;
+		}
 	}
 	return 0;
-
 }
